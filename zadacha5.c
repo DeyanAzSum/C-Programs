@@ -1,16 +1,26 @@
 #include <stdio.h>
-#include "maths.h"
-int main() {
-    int number;
-    printf("Chislo za namirane na factorial: ");
-    scanf("%d", &number);
-    if (number < 0) {
-        printf("Chisloto e otricatelno");
-    } else {
-        printf("%ld", factorial(number));
-    }
-    return 0;
+
+int removeDuplicates(int* nums, int numsSize);
+
+int main(void) {
+  int nums[10] = {0, 0, 0, 1, 1, 2, 2, 5, 5, 7};
+  int size = removeDuplicates(nums, 10);
+  for (int i = 0; i < size; i++) {
+    printf("%d ", nums[i]);
+  }
+
+  return 0;
 }
-// gcc -c maths.c -o maths.o
-// ar rcs libmaths.a maths.o
-// gcc zadacha5.c -L. -lmaths -o zadacha5.exe
+
+int removeDuplicates(int* nums, int numsSize){
+    int curel = nums[0];
+    int k = 1;
+    for (int i = 1; i < numsSize; i++) {
+        if (nums[i] != curel) {
+            nums[k] = nums[i];
+            curel = nums[k];
+            k++;
+        }
+    }
+    return k;
+}
