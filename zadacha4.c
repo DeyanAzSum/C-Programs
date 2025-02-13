@@ -1,19 +1,28 @@
+/*Дефинирайте макро функция, която да се казва 
+COMMAND да приема два аргумента NAME и TYPE и 
+да създава идентификатор за командна функция от 
+типа TYPE_NAME_command. Така например COMMAND(quit, internal) 
+да създава идентификатор internal_quit_command. 
+Направете макро функция която да се казва DEFINE_COMMAND, 
+която да приема два аргумента NAME и TYPE и да използва макрото 
+COMMAND за да създаде декларация на функция от типа 
+“void TYPE_NAME_command(void)” така например DEFINE_COMMAND(quit, external) 
+{ … } трябва да създаде дефиниция на функция “void external_quit_command(void) 
+{...}”. Използвайте макрото за да дефинирате две функции, които да принтират 
+просто съобщение на екрана. Извикайте тези функции в main.*/
+
 #include <stdio.h>
-#include <math.h>
-void square(long arr[], int size) {
-    for (int i = 0; i < size; i++) {
-        arr[i] = pow(arr[i], 4);
-    }
-}
+#define COMMAND(NAME, TYPE) TYPE ## _ ## NAME ## _command
+#define DEFINE_COMMAND(NAME, TYPE) \
+    void COMMAND(NAME, TYPE)(void)
 int main() {
-    long arr[] = {1, 2, 3, 4, 5};
-    int size = 5;
-    square(arr, size);
-    for (int i = 0; i < size; i++) {
-        printf("%ld ", arr[i]);
-    }
+   DEFINE_COMMAND(quit, internal) {
+    printf("Suobshtenie 1\n");
+}
+DEFINE_COMMAND(quit, external) {
+    printf("Suobshtenie 2");
+}
+    internal_quit_command();
+    external_quit_command();
     return 0;
 }
-// gcc -c zadacha4.c -o zadacha4.o
-// ar rcs libzadacha4.a zadacha4.o
-// gcc usepow.c -lm -o usepow.exe

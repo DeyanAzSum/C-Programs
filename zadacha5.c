@@ -1,26 +1,21 @@
+/*Направете макро функция (SWAP(А, B, TYPE)), 
+което да разменя стойностите на две променливи 
+от произволен тип. Помощ: въведете типа като 
+допълнителен аргумент на макро функцията. 
+Демонстрирайте използването на подобно макро. 
+Когато дефинирате макрото за да се чете по лесно 
+кодът, можете да слагата “\” за да направите макрото 
+на няколко реда.*/
 #include <stdio.h>
-
-int removeDuplicates(int* nums, int numsSize);
-
-int main(void) {
-  int nums[10] = {0, 0, 0, 1, 1, 2, 2, 5, 5, 7};
-  int size = removeDuplicates(nums, 10);
-  for (int i = 0; i < size; i++) {
-    printf("%d ", nums[i]);
-  }
-
-  return 0;
+#define SWAP(A, B, TYPE) { \
+    TYPE temp = A; \
+    A = B; \
+    B = temp; \
 }
-
-int removeDuplicates(int* nums, int numsSize){
-    int curel = nums[0];
-    int k = 1;
-    for (int i = 1; i < numsSize; i++) {
-        if (nums[i] != curel) {
-            nums[k] = nums[i];
-            curel = nums[k];
-            k++;
-        }
+int main() {
+    int x = 1, y = 2;
+    SWAP(x, y, int){
+    printf("%d %d", x, y);
     }
-    return k;
+    return 0;
 }

@@ -1,14 +1,13 @@
+/*Направете макро, което да дефинира помощен инструмент за дебъгване,
+който да принтира името на променливата, нейната стойност файлът в 
+който се използва и линията от код, която принтира тази информация*/
 #include <stdio.h>
-#include "transformation.h"
-int main()
-{
-    char input1[] = "123";
-    char input2[] = "5yu9";
-    char input3[] = "-321";
-    transformation correct = otstrvint(input1);
-    printf("Result: %ld\nError: %s", correct.result, correct.error);
-    transformation incorrect = otstrvint(input2);
-    printf("Result: %ld\nError: %s", incorrect.result, incorrect.error);
-    transformation correct = otstrvint(input3);
-    printf("Result: %ld\nError: %s", incorrect.result, incorrect.error);
+#define DEBUGING(A) printf("The value of " #A " is %d\n", A ) \
+printf("The file is %s", __FILE__)\
+printf("The line is %d", __LINE__)\
+
+int main(void) {
+  int i = 28;
+  DEBUGING(i);
+  return 0;
 }
