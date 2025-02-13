@@ -18,11 +18,7 @@ Person), паралелката на класа  (символ), номера на класа (ц€ло число) и
 #include <stdio.h>
 #include "schoolclass.h"
 #include "schoolroom.h"
-struct School{
-    SchoolClass clasove[20];
-    SchoolRoom rooms[10];
-};
 int main(){
     School school;
-
+    return 0;
 }
