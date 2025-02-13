@@ -1,32 +1,13 @@
+/*Направете макро, което да дефинира помощен инструмент за дебъгване,
+който да принтира името на променливата, нейната стойност файлът в 
+който се използва и линията от код, която принтира тази информация*/
 #include <stdio.h>
-
-void bubblesort(int * arr, int arrlen);
-int sortedevenindexesproduct(int *arr, int arrlen);
+#define DEBUGINT(A) printf("The value of " #A " is %d\n", A ); \
+printf("The file is %s", __FILE__); \
+printf("The line is %d", __LINE__); \
 
 int main(void) {
-  int array[5] = {1,9,3,2,5};
-  int product = sortedevenindexesproduct(array, 5);
-  printf("%d", product);
+  int i = 28;
+  DEBUGINT(i);
   return 0;
-}
-
-void bubblesort(int arr[], int arrlen) {
-  for (int i = 0; i < arrlen - 1; i++) {
-    for (int j =  0; j < arrlen - i - 1; j++) {
-      if (arr[j] > arr[j + 1]) {
-        int temp = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = temp;
-      }
-    }
-  }
-}
-
-int sortedevenindexesproduct(int arr[], int arrlen) {
-  bubblesort(arr, arrlen);
-  int product = 1;
-  for (int i = 0; i < arrlen; i = i + 2) {
-    product = product * arr[i];
-  }
-  return product;
 }
