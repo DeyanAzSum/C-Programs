@@ -1,0 +1,60 @@
+/*Направете заглавен файл “person.h”, който да декларира
+структура “Person”, която да съдържа информация, за името
+на човека (масив от 20 символа), неговото презиме (масив от
+20 символа) неговата фамилия (масив от 20 символа) и в коя
+година е роден (цяло число). Направете заглавен файл “schoolclass.h”,
+който да вмъква заглавния файл “person.h” и да декларира структура
+“SchoolClass” (клас), която да съдържа масив от 26 ученика (от структурата
+Person), паралелката на класа  (символ), номера на класа (цяло число) и
+класен ръководител (поле от тип Person). Направете заглавен файл “schoolroom.h”,
+в който вмъкнете заглавния файл “person.h” и в който декларирайте структруа
+“SchoolRoom”, която да съдържа номер на стаята (цяло число), и информация
+кои хора се намират в тази стая в момента (масив от 50 елемента от тип Person).
+Направете файл, който да се казва school.c и в него вмъкнете заглавните файлове
+“schoolclass.h” и ‘schoolroom.h” и направете структура “School”, която да
+съдържа училищни класове (масив от тип SchoolClass с размер 20) и училищни стаи
+(масив от тип SchoolRoom с размер 10). В файла school.c в main декларирайте
+променлива от тип school.*/
+#include <stdio.h>
+#include "school.h"
+
+int main() {
+    // Create an instance of the School structure
+    School school;
+
+    // Example initialization for the first class
+    school.clasove[0].number = 1;  // Class number 1
+    school.clasove[0].paralelka = 'A';  // Class 'A'
+
+    // Example: Initializing class teacher (using direct assignment)
+    snprintf(school.clasove[0].classTeacher.firstname, sizeof(school.clasove[0].classTeacher.firstname), "John");
+    snprintf(school.clasove[0].classTeacher.secondname, sizeof(school.clasove[0].classTeacher.secondname), "Michael");
+    snprintf(school.clasove[0].classTeacher.surname, sizeof(school.clasove[0].classTeacher.surname), "Doe");
+    school.clasove[0].classTeacher.bornyear = 1980;
+
+    // Example: Initializing the first student
+    snprintf(school.clasove[0].students[0].firstname, sizeof(school.clasove[0].students[0].firstname), "Jane");
+    snprintf(school.clasove[0].students[0].secondname, sizeof(school.clasove[0].students[0].secondname), "Emily");
+    snprintf(school.clasove[0].students[0].surname, sizeof(school.clasove[0].students[0].surname), "Smith");
+    school.clasove[0].students[0].bornyear = 2005;
+
+    // Example: Initializing the first room
+    school.rooms[0].roomnumber = 101;  // Room number 101
+
+    // Print information about the class and teacher
+    printf("Class %d%c\n", school.clasove[0].number, school.clasove[0].paralelka);
+    printf("Class teacher: %s %s %s\n", school.clasove[0].classTeacher.firstname,
+                                        school.clasove[0].classTeacher.secondname,
+                                        school.clasove[0].classTeacher.surname);
+
+    // Print student information
+    printf("First student: %s %s %s (Born: %d)\n", school.clasove[0].students[0].firstname,
+                                                   school.clasove[0].students[0].secondname,
+                                                   school.clasove[0].students[0].surname,
+                                                   school.clasove[0].students[0].bornyear);
+
+    // Print room information
+    printf("Room number: %d\n", school.rooms[0].roomnumber);
+
+    return 0;
+}
